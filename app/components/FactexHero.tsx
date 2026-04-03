@@ -39,28 +39,28 @@ function IconUsers({ className }: { className?: string }) {
   );
 }
 
-// ─── Datos de las features ──────────────────────────────────────────────────
+// ─── Datos de las features principales (scroll reveal) ──────────────────────
 const features = [
   {
-    title: "Facturas Rápidas",
+    title: "Facturación Electrónica DIAN",
     description:
-      "Crea y envía facturas profesionales en segundos. Plantillas inteligentes que se adaptan a tu marca.",
+      "Emite facturas electrónicas válidas ante la DIAN. Envío individual o masivo, notas crédito/débito y sincronización automática.",
     icon: IconBolt,
     gradient: "from-amber-500 to-orange-600",
     glowColor: "rgba(245,158,11,0.15)",
   },
   {
-    title: "Reportes Inteligentes",
+    title: "Dashboard Gerencial",
     description:
-      "Dashboards en tiempo real con analítica predictiva. Conoce tu negocio antes que nadie.",
+      "KPIs en tiempo real: ventas por mes, productos top, analítica por vendedor, categoría y método de pago.",
     icon: IconChart,
     gradient: "from-blue-500 to-cyan-500",
     glowColor: "rgba(59,130,246,0.15)",
   },
   {
-    title: "Gestión de Clientes",
+    title: "Clientes & Cartera",
     description:
-      "CRM integrado con historial completo de facturas, pagos y comunicaciones en un solo lugar.",
+      "CRM completo con historial crediticio, cuotas, saldos a favor, devoluciones y seguimiento de pagos por cliente.",
     icon: IconUsers,
     gradient: "from-violet-500 to-purple-600",
     glowColor: "rgba(139,92,246,0.15)",
@@ -69,10 +69,10 @@ const features = [
 
 // ─── Datos de métricas animadas ─────────────────────────────────────────────
 const metrics = [
-  { value: 50000, suffix: "+", label: "Facturas creadas" },
-  { value: 99.9, suffix: "%", label: "Uptime garantizado", decimals: 1 },
-  { value: 3, suffix: "seg", label: "Tiempo promedio" },
-  { value: 4.9, suffix: "/5", label: "Valoración", decimals: 1 },
+  { value: 14, suffix: "", label: "Módulos integrados" },
+  { value: 60, suffix: "+", label: "Funcionalidades clave" },
+  { value: 90, suffix: "+", label: "Operaciones automatizadas" },
+  { value: 15, suffix: "+", label: "Reportes gerenciales" },
 ];
 
 // ─── Animated Counter — cuenta de 0 al valor final ─────────────────────────
@@ -304,6 +304,12 @@ function DashboardMockup({ variant }: { variant: number }) {
 }
 
 // ─── Floating particles — decoración ambient ────────────────────────────────
+// Deterministic pseudo-random using a simple hash to avoid SSR/client mismatch
+function seeded(i: number, offset: number) {
+  const x = Math.sin(i * 9301 + offset * 4973) * 49297;
+  return x - Math.floor(x); // 0..1
+}
+
 function FloatingParticles() {
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -312,18 +318,18 @@ function FloatingParticles() {
           key={i}
           className="absolute h-px w-px rounded-full bg-blue-400/40"
           style={{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
+            left: `${seeded(i, 1) * 100}%`,
+            top: `${seeded(i, 2) * 100}%`,
           }}
           animate={{
-            y: [0, -30 - Math.random() * 50, 0],
-            opacity: [0, 0.6 + Math.random() * 0.4, 0],
-            scale: [0, 1 + Math.random(), 0],
+            y: [0, -30 - seeded(i, 3) * 50, 0],
+            opacity: [0, 0.6 + seeded(i, 4) * 0.4, 0],
+            scale: [0, 1 + seeded(i, 5), 0],
           }}
           transition={{
-            duration: 4 + Math.random() * 6,
+            duration: 4 + seeded(i, 6) * 6,
             repeat: Infinity,
-            delay: Math.random() * 5,
+            delay: seeded(i, 7) * 5,
             ease: "easeInOut",
           }}
         />
@@ -379,7 +385,7 @@ export default function FactexHero() {
   return (
     <section ref={containerRef} className="relative h-[450vh] bg-black">
       {/* ─── Sticky viewport ─────────────────────────────────────────── */}
-      <div className="sticky top-0 flex h-screen flex-col items-center justify-center overflow-hidden">
+      <div className="sticky top-0 flex h-screen flex-col items-center justify-center overflow-hidden pt-32">
         {/* ─── Fondos decorativos ─────────────────────────────────────── */}
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,_rgba(59,130,246,0.12),_transparent_60%)]" />
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_100%,_rgba(139,92,246,0.06),_transparent_50%)]" />
@@ -419,7 +425,7 @@ export default function FactexHero() {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-400 opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-blue-400" />
             </span>
-            Nuevo: Facturación inteligente con IA
+            14 módulos · Facturación electrónica DIAN
           </motion.div>
 
           {/* Título con efecto de reveal por líneas */}
@@ -432,14 +438,13 @@ export default function FactexHero() {
                 delay: 0.15,
                 ease: [0.25, 0.46, 0.45, 0.94],
               }}
-              className="max-w-5xl text-5xl font-bold leading-[1.05] tracking-tighter text-white sm:text-6xl md:text-7xl lg:text-[5.5rem]"
+              className="max-w-5xl text-4xl font-bold leading-[1.05] tracking-tighter text-white sm:text-5xl md:text-6xl lg:text-7xl"
             >
-              La Facturación
+              Tu ERP Completo.
               <br />
               <span className="inline-block bg-gradient-to-r from-blue-400 via-blue-500 to-violet-500 bg-clip-text text-transparent">
-                del Futuro
+                Una sola plataforma.
               </span>
-              , Hoy.
             </motion.h1>
           </div>
 
@@ -451,10 +456,10 @@ export default function FactexHero() {
               delay: 0.35,
               ease: [0.25, 0.46, 0.45, 0.94],
             }}
-            className="mt-6 max-w-xl text-base leading-relaxed text-zinc-400 sm:text-lg md:text-xl"
+            className="mt-6 max-w-2xl text-base leading-relaxed text-zinc-400 sm:text-lg md:text-xl"
           >
-            Automatiza, controla y escala tu facturación con la plataforma más
-            potente y elegante del mercado.
+            Ventas, inventario, compras, cartera, tesorería, contabilidad, reportes
+            gerenciales y facturación electrónica DIAN. Todo integrado, todo en uno.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -551,7 +556,7 @@ export default function FactexHero() {
         ════════════════════════════════════════════════════════════════ */}
         <motion.div
           style={{ opacity: featuresOpacity }}
-          className="absolute inset-0 flex flex-col items-center justify-center px-4 sm:px-6"
+          className="absolute inset-0 flex flex-col items-center justify-start overflow-y-auto px-4 pt-24 sm:px-6 md:pt-28"
         >
           {/* Etiqueta superior de la sección */}
           <motion.div
@@ -565,9 +570,9 @@ export default function FactexHero() {
           {/* Título de features */}
           <motion.div
             style={{ opacity: featuresTitleOpacity, y: featuresTitleY }}
-            className="mb-10 text-center md:mb-14"
+            className="mb-8 text-center md:mb-10"
           >
-            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl lg:text-[3.5rem]">
+            <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-4xl lg:text-5xl">
               Todo lo que necesitas.
               <br />
               <span className="bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent">
@@ -591,7 +596,7 @@ export default function FactexHero() {
           {/* ─── Métricas animadas ─────────────────────────────────────── */}
           <motion.div
             style={{ opacity: metricsOpacity, y: metricsY }}
-            className="mt-10 grid w-full max-w-3xl grid-cols-2 gap-4 md:mt-14 md:grid-cols-4 md:gap-6"
+            className="mt-8 grid w-full max-w-3xl grid-cols-2 gap-3 md:mt-10 md:grid-cols-4 md:gap-4"
           >
             {metrics.map((m) => (
               <div
@@ -602,7 +607,6 @@ export default function FactexHero() {
                   <AnimatedCounter
                     value={m.value}
                     suffix={m.suffix}
-                    decimals={m.decimals}
                     progress={smoothProgress}
                   />
                 </span>
@@ -614,7 +618,7 @@ export default function FactexHero() {
           {/* ─── CTA final ─────────────────────────────────────────────── */}
           <motion.div
             style={{ opacity: ctaOpacity, y: ctaY }}
-            className="mt-10 flex flex-col items-center gap-3 md:mt-14"
+            className="mt-8 flex flex-col items-center gap-3 md:mt-10"
           >
             <button className="cta-shimmer group relative inline-flex h-14 items-center justify-center gap-3 overflow-hidden rounded-full bg-gradient-to-r from-blue-500 to-violet-500 px-10 text-sm font-semibold text-white shadow-lg shadow-blue-500/20 transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/35 active:scale-[0.98]">
               <span className="relative z-10">Comenzar Ahora — Es Gratis</span>

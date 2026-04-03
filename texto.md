@@ -555,3 +555,4 @@ Si lo vas a usar para una landing page, mi recomendación es comunicarlo así:
 - **Control total de ventas, inventario, compras, cartera, tesorería y contabilidad**
 
 Ese mensaje es más claro y comercial que intentar poner absolutamente cada endpoint o cada subproceso técnico.
+
