@@ -383,7 +383,7 @@ export default function FactexHero() {
   const ctaY = useTransform(smoothProgress, [0.86, 0.93], [30, 0]);
 
   return (
-    <section ref={containerRef} className="relative h-[450vh] bg-black">
+    <section id="producto" ref={containerRef} className="relative h-[450vh] bg-black">
       {/* ─── Sticky viewport ─────────────────────────────────────────── */}
       <div className="sticky top-0 flex h-screen flex-col items-center justify-center overflow-hidden pt-32">
         {/* ─── Fondos decorativos ─────────────────────────────────────── */}

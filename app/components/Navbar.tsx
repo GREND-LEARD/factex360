@@ -4,10 +4,10 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
-  { label: "Producto", href: "#producto" },
-  { label: "Características", href: "#features" },
-  { label: "Precios", href: "#precios" },
-  { label: "Contacto", href: "#contacto" },
+  { label: "Producto", href: "/#producto" },
+  { label: "Características", href: "/caracteristicas" },
+  { label: "Precios", href: "/precios" },
+  { label: "Contacto", href: "/contacto" },
 ];
 
 export default function Navbar() {

@@ -1,8 +1,7 @@
 import FactexHero from "./components/FactexHero";
 import Navbar from "./components/Navbar";
+import ScrollTextReveal from "./components/ScrollTextReveal";
 import ModulesSection from "./components/ModulesSection";
-import BentoGrid from "./components/BentoGrid";
-import DianSection from "./components/DianSection";
 import FinalCTA from "./components/FinalCTA";
 
 export default function Home() {
@@ -10,9 +9,8 @@ export default function Home() {
     <main className="bg-black">
       <Navbar />
       <FactexHero />
+      <ScrollTextReveal />
       <ModulesSection />
-      <BentoGrid />
-      <DianSection />
       <FinalCTA />
     </main>
   );
